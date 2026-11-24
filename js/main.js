@@ -732,88 +732,71 @@ if (typeof gsap !== "undefined" && featuredSection && caseCards.length) {
 // =========================================================================
 document.addEventListener("DOMContentLoaded", () => {
   const vaSection = document.querySelector(".tizzy-visual-about");
-  if (!vaSection || typeof gsap === "undefined") return;
+  const vaPin = document.querySelector(".tizzy-va-pin");
+  if (!vaSection || !vaPin || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+  gsap.registerPlugin(ScrollTrigger);
 
   const steps = Array.from(vaSection.querySelectorAll(".tizzy-va-step"));
   const panels = Array.from(vaSection.querySelectorAll(".tizzy-va-panel"));
   const scrollFill = vaSection.querySelector(".tizzy-va-scroll-fill");
   const scrollCueIcon = vaSection.querySelector(".tizzy-va-scroll-cue i");
   const starShape = vaSection.querySelector(".tizzy-va-star");
-  const orbitShape = vaSection.querySelector(".tizzy-va-orbit");
+  const heroCard = vaSection.querySelector(".tizzy-va-hero-card");
+  const toolsBlock = vaSection.querySelector(".tizzy-va-tools");
   const pills = gsap.utils.toArray(".tizzy-va-pill");
   const toolDesc = document.getElementById("tizzy-va-tool-desc");
-  const copyBtns = vaSection.querySelectorAll(".tizzy-va-copy");
-  const toastEl = document.getElementById("tizzy-va-toast");
 
   let currentChapter = -1;
 
-  function activateChapter(activeIdx) {
-    if (activeIdx === currentChapter) return;
-    currentChapter = activeIdx;
+  function activateChapter(idx) {
+    if (idx === currentChapter) return;
+    currentChapter = idx;
 
-    steps.forEach((step, idx) => {
-      step.classList.toggle("is-active", idx === activeIdx);
-    });
-
-    panels.forEach((panel, idx) => {
-      const isMatch = idx === activeIdx;
-      panel.classList.toggle("is-active", isMatch);
+    steps.forEach((step, i) => step.classList.toggle("is-active", i === idx));
+    panels.forEach((panel, i) => {
+      const match = i === idx;
+      panel.classList.toggle("is-active", match);
       gsap.to(panel, {
-        autoAlpha: isMatch ? 1 : 0,
-        y: isMatch ? 0 : 10,
-        duration: 0.3,
+        autoAlpha: match ? 1 : 0,
+        y: match ? 0 : 8,
+        duration: 0.25,
         ease: "power2.out",
         overwrite: true
       });
     });
   }
 
-  // Estado inicial en 01 · Perfil
   activateChapter(0);
 
-  // Cambio exclusivo con ScrollTrigger (sin clic manual en los pasos)
-  if (typeof ScrollTrigger !== "undefined" && panels.length === 3) {
-    gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.create({
+    trigger: vaSection,
+    start: "top top",
+    end: "+=180%",
+    pin: vaPin,
+    scrub: 0.8,
+    onUpdate: (self) => {
+      const p = self.progress;
 
-    ScrollTrigger.create({
-      trigger: vaSection,
-      start: "top top",
-      end: "+=150%",
-      pin: true,
-      scrub: 0.8,
-      onUpdate: (self) => {
-        const p = self.progress;
+      if (scrollFill) gsap.set(scrollFill, { scaleX: p });
+      if (scrollCueIcon) gsap.set(scrollCueIcon, { y: Math.sin(p * Math.PI * 6) * 3 });
+      if (starShape) gsap.set(starShape, { rotation: p * 180 });
+      if (heroCard) gsap.set(heroCard, { scale: 0.95 + p * 0.05, y: (0.5 - p) * 14 });
 
-        if (scrollFill) {
-          gsap.set(scrollFill, { scaleX: p });
-        }
-
-        if (scrollCueIcon) {
-          gsap.set(scrollCueIcon, { y: Math.sin(p * Math.PI * 6) * 3 });
-        }
-
-        if (starShape) {
-          gsap.set(starShape, { rotation: p * 180 });
-        }
-
-        if (orbitShape) {
-          gsap.set(orbitShape, { rotation: -p * 140 });
-        }
-
-        if (p < 0.34) {
-          activateChapter(0);
-        } else if (p < 0.67) {
-          activateChapter(1);
-        } else {
-          activateChapter(2);
-        }
+      if (toolsBlock) {
+        const toolProgress = gsap.utils.clamp(0, 1, (p - 0.55) / 0.35);
+        gsap.set(toolsBlock, {
+          opacity: 0.35 + toolProgress * 0.65,
+          y: (1 - toolProgress) * 10
+        });
       }
-    });
 
-    window.addEventListener("load", () => ScrollTrigger.refresh());
-  }
+      if (p < 0.33) activateChapter(0);
+      else if (p < 0.66) activateChapter(1);
+      else activateChapter(2);
+    }
+  });
 
-  // Interacción en herramientas (descripciones claras y concisas)
   const toolNotes = {
     "Adobe Photoshop": "Retoque fotográfico, color, texturas y montaje de carteles.",
     "Adobe Illustrator": "Logotipos, identidad de marca, iconos y arte vectorial.",
@@ -826,65 +809,18 @@ document.addEventListener("DOMContentLoaded", () => {
     "VisualStudioCode": "Desarrollo web en HTML, CSS y JavaScript."
   };
 
-  pills.forEach((pill, i) => {
+  pills.forEach((pill) => {
     const label = pill.textContent.trim();
-
-    pill.addEventListener("mouseenter", () => {
-      gsap.to(pill, {
-        y: -4,
-        rotation: i % 2 === 0 ? -2 : 2,
-        duration: 0.2,
-        ease: "power2.out"
-      });
-    });
-
-    pill.addEventListener("mouseleave", () => {
-      gsap.to(pill, {
-        y: 0,
-        rotation: 0,
-        duration: 0.25,
-        ease: "power2.inOut"
-      });
-    });
-
     pill.addEventListener("click", () => {
       pills.forEach((p) => p.classList.remove("is-active"));
       pill.classList.add("is-active");
-
-      gsap.fromTo(
-        pill,
-        { scale: 0.9, y: -6 },
-        { scale: 1, y: 0, duration: 0.35, ease: "back.out(1.7)" }
-      );
-
-      if (toolDesc) {
-        toolDesc.textContent = `${label} — ${toolNotes[label] || label}`;
-        gsap.fromTo(
-          toolDesc,
-          { opacity: 0.3, x: -6 },
-          { opacity: 1, x: 0, duration: 0.25 }
-        );
-      }
+      gsap.fromTo(pill, { scale: 0.92, y: -5 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(1.7)" });
+      if (toolDesc) toolDesc.textContent = `${label} — ${toolNotes[label] || label}`;
     });
   });
 
-  // Copiar contacto
-  copyBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const value = btn.getAttribute("data-copy") || "";
-      if (navigator.clipboard?.writeText) {
-        navigator.clipboard.writeText(value).catch(() => {});
-      }
-      if (toastEl) {
-        toastEl.textContent = `Copiado: ${value}`;
-        gsap.fromTo(toastEl, { opacity: 0, y: 4 }, { opacity: 1, y: 0, duration: 0.25 });
-      }
-    });
-  });
+  window.addEventListener("load", () => ScrollTrigger.refresh());
 });
-
-
-
 
 
 

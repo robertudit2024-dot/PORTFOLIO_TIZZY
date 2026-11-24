@@ -1169,14 +1169,20 @@ label {
 .tizzy-visual-about {
   position: relative;
   width: 100%;
-  min-height: 100dvh;
   background-color: var(--bg-color);
   color: var(--text-color);
   border-top: 1px solid var(--border-color);
-  padding: 5.5rem 2rem 3rem;
+  overflow-x: clip;
+}
+
+.tizzy-va-pin {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  padding: 5.25rem 2rem 1.75rem;
   display: flex;
   align-items: center;
-  overflow-x: clip;
+  box-sizing: border-box;
 }
 
 .tizzy-va-inner {
@@ -1186,7 +1192,7 @@ label {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.15rem;
 }
 
 .tizzy-va-graphic {
@@ -1194,64 +1200,54 @@ label {
   color: var(--accent-color);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.35;
   will-change: transform;
 }
 
 .tizzy-va-star {
-  top: -10px;
-  right: 2%;
-  width: 110px;
-  height: 110px;
-}
-
-.tizzy-va-orbit {
-  bottom: -30px;
-  left: 38%;
-  width: 210px;
-  height: 210px;
+  top: -8px;
+  right: 1%;
+  width: 72px;
+  height: 72px;
 }
 
 .tizzy-va-top {
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color);
+  gap: 0.75rem;
 }
 
 .tizzy-va-title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  font-size: clamp(2rem, 4.2vw, 3.3rem);
   font-weight: 400;
-  line-height: 0.96;
+  line-height: 1;
 }
 
 .tizzy-va-links {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.55rem;
+  gap: 0.5rem;
   font-family: var(--font-display);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: var(--muted-color);
 }
 
 .tizzy-va-copy {
-  padding: 0.15rem 0;
+  padding: 0.1rem 0;
   border: none;
   border-bottom: 1px dashed var(--border-color);
   background: transparent;
   color: var(--text-color);
   font-family: var(--font-display);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .tizzy-va-copy:hover {
@@ -1261,134 +1257,7 @@ label {
 
 .tizzy-va-toast {
   color: var(--accent-color);
-  font-size: 0.74rem;
-}
-
-.tizzy-va-stage {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 2.5rem;
-  align-items: stretch;
-}
-
-.tizzy-va-hero-card {
-  position: relative;
-  min-height: 440px;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  background-color: var(--btn-bg);
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.25);
-  will-change: transform;
-}
-
-.tizzy-va-hero-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  display: block;
-  transform: scale(1.06);
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.tizzy-va-hero-card:hover img {
-  transform: scale(1.01);
-}
-
-.tizzy-va-blue-tint {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 49, 112, 0.14) 0%, rgba(0, 18, 48, 0.72) 100%);
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-
-.tizzy-va-overlay-meta {
-  position: absolute;
-  left: 1.25rem;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.tizzy-va-tag {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  letter-spacing: 0.08em;
-  color: #ffffff;
-}
-
-.tizzy-va-subtag {
-  font-family: var(--font-display);
   font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  color: rgba(255, 255, 255, 0.78);
-}
-
-.tizzy-va-side {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.5rem;
-}
-
-.tizzy-va-bio-box {
-  padding: 1.35rem 1.45rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  background-color: rgba(255, 255, 255, 0.02);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.tizzy-va-bio-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-}
-
-.tizzy-va-steps {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.tizzy-va-step {
-  padding: 0.32rem 0.72rem;
-  border-radius: 999px;
-  border: 1px solid var(--border-color);
-  color: var(--muted-color);
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  user-select: none;
-  pointer-events: none;
-  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
-}
-
-.tizzy-va-step.is-active {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
-  color: var(--bg-color);
-}
-
-.tizzy-va-scroll-cue {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  color: var(--accent-color);
-  user-select: none;
 }
 
 .tizzy-va-scroll-track {
@@ -1408,7 +1277,120 @@ label {
   transform-origin: left center;
 }
 
-/* Grid en misma celda: toma automáticamente la altura del párrafo más alto sin recortes */
+.tizzy-va-stage {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.tizzy-va-hero-card {
+  position: relative;
+  height: min(54dvh, 430px);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background-color: var(--btn-bg);
+  will-change: transform;
+}
+
+.tizzy-va-hero-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.tizzy-va-blue-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 49, 112, 0.14) 0%, rgba(0, 18, 48, 0.72) 100%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.tizzy-va-overlay-meta {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tizzy-va-tag {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.tizzy-va-subtag {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tizzy-va-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tizzy-va-bio-box {
+  padding: 1rem 1.15rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tizzy-va-bio-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tizzy-va-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tizzy-va-step {
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  color: var(--muted-color);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  pointer-events: none;
+}
+
+.tizzy-va-step.is-active {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
+.tizzy-va-scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-color);
+}
+
 .tizzy-va-panels {
   display: grid;
   grid-template-columns: 1fr;
@@ -1419,8 +1401,8 @@ label {
   grid-area: 1 / 1;
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 0.92rem;
-  line-height: 1.62;
+  font-size: 0.88rem;
+  line-height: 1.52;
   color: var(--muted-color);
   opacity: 0;
   visibility: hidden;
@@ -1436,51 +1418,46 @@ label {
 .tizzy-va-tools {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.6rem;
+  opacity: 0.35;
+  transform: translateY(10px);
 }
 
 .tizzy-va-tools-top {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
 .tizzy-va-tools-title {
   font-family: var(--font-display);
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
-  color: var(--text-color);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
 }
 
 .tizzy-va-tool-desc {
   font-family: var(--font-sans);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: var(--accent-color);
-  min-height: 1.3em;
 }
 
 .tizzy-va-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .tizzy-va-pill {
-  padding: 0.42rem 0.85rem;
+  padding: 0.34rem 0.72rem;
   border-radius: 999px;
   border: 1px solid var(--border-color);
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-  will-change: transform;
-}
-
-.tizzy-va-pill:hover {
-  border-color: var(--accent-color);
-  color: var(--accent-color);
 }
 
 .tizzy-va-pill.is-active {
@@ -1490,91 +1467,32 @@ label {
 }
 
 @media (max-width: 900px) {
-  .tizzy-visual-about {
-    min-height: auto;
-    padding: 4.5rem 1.25rem 3rem;
-    align-items: flex-start;
-  }
-
-  .tizzy-va-inner {
-    gap: 1.35rem;
+  .tizzy-va-pin {
+    padding: 4.5rem 1.15rem 1.5rem;
   }
 
   .tizzy-va-stage {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 0.9rem;
   }
 
   .tizzy-va-hero-card {
-    min-height: 0;
-    height: 205px;
-    max-height: 215px;
-    border-radius: 12px;
-  }
-
-  .tizzy-va-overlay-meta {
-    left: 0.95rem;
-    right: 0.95rem;
-    bottom: 0.85rem;
-  }
-
-  .tizzy-va-tag {
-    font-size: 0.98rem;
-  }
-
-  .tizzy-va-subtag {
-    font-size: 0.65rem;
-  }
-
-  .tizzy-va-side {
-    gap: 1.25rem;
+    height: 155px;
   }
 
   .tizzy-va-bio-box {
-    padding: 1rem 1.05rem;
-    gap: 0.8rem;
+    padding: 0.8rem 0.9rem;
+    gap: 0.55rem;
   }
 
   .tizzy-va-panel {
-    font-size: 0.86rem;
-    line-height: 1.55;
-  }
-
-  .tizzy-va-star {
-    width: 72px;
-    height: 72px;
-  }
-
-  .tizzy-va-orbit {
-    width: 140px;
-    height: 140px;
-    left: auto;
-    right: -30px;
-    bottom: 8%;
-  }
-}
-
-@media (max-width: 480px) {
-  .tizzy-visual-about {
-    padding: 4rem 1rem 2.5rem;
-  }
-
-  .tizzy-va-hero-card {
-    height: 180px;
-  }
-
-  .tizzy-va-step {
-    font-size: 0.66rem;
-    padding: 0.26rem 0.58rem;
-  }
-
-  .tizzy-va-scroll-cue {
-    font-size: 0.66rem;
+    font-size: 0.8rem;
+    line-height: 1.45;
   }
 
   .tizzy-va-pill {
-    font-size: 0.74rem;
-    padding: 0.36rem 0.72rem;
+    font-size: 0.7rem;
+    padding: 0.28rem 0.6rem;
   }
 }
 

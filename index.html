@@ -414,94 +414,86 @@
 
 
 <section id="sobre-mi" class="tizzy-visual-about" aria-label="Sobre mí">
-  <div class="tizzy-va-inner">
-    <!-- Gráficos de fondo vivos -->
-    <svg class="tizzy-va-graphic tizzy-va-star" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-      <path d="M60 4 L72 44 L112 40 L79 64 L98 100 L60 76 L22 100 L41 64 L8 40 L48 44 Z" stroke="currentColor" stroke-width="1.6"/>
-    </svg>
-    <svg class="tizzy-va-graphic tizzy-va-orbit" viewBox="0 0 220 220" fill="none" aria-hidden="true">
-      <circle cx="110" cy="110" r="96" stroke="currentColor" stroke-width="1.2" stroke-dasharray="5 7"/>
-      <circle cx="110" cy="14" r="5" fill="currentColor"/>
-    </svg>
+  <div class="tizzy-va-pin">
+    <div class="tizzy-va-inner">
+      <svg class="tizzy-va-graphic tizzy-va-star" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+        <path d="M60 4 L72 44 L112 40 L79 64 L98 100 L60 76 L22 100 L41 64 L8 40 L48 44 Z" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
 
-    <!-- Cabecera mínima -->
-    <div class="tizzy-va-top">
-      <h2 class="tizzy-va-title" data-i18n="about">Sobre mí</h2>
-      <div class="tizzy-va-links">
-        <button type="button" class="tizzy-va-copy" data-copy="info.tizzydesigns@gmail.com">info.tizzydesigns@gmail.com</button>
-        <span>/</span>
-        <button type="button" class="tizzy-va-copy" data-copy="@tizzy.designs">@tizzy.designs</button>
-        <span id="tizzy-va-toast" class="tizzy-va-toast" aria-live="polite"></span>
-      </div>
-    </div>
-
-    <!-- Escenario principal: Retrato protagonista + Panel secundario -->
-    <div class="tizzy-va-stage">
-      <!-- PRIMER PLANO: Imagen + Sello gráfico -->
-      <div class="tizzy-va-hero-card">
-        <img src="resources/tu-foto.jpg" alt="Tizzy · Diseñador gráfico">
-        <div class="tizzy-va-blue-tint" aria-hidden="true"></div>
-        <div class="tizzy-va-overlay-meta">
-          <span class="tizzy-va-tag">TIZZY · VISUAL DESIGN</span>
+      <div class="tizzy-va-top">
+        <h2 class="tizzy-va-title" data-i18n="about">Sobre mí</h2>
+        <div class="tizzy-va-links">
+          <button type="button" class="tizzy-va-copy" data-copy="info.tizzydesigns@gmail.com">info.tizzydesigns@gmail.com</button>
+          <span>/</span>
+          <button type="button" class="tizzy-va-copy" data-copy="@tizzy.designs">@tizzy.designs</button>
+          <span id="tizzy-va-toast" class="tizzy-va-toast" aria-live="polite"></span>
         </div>
       </div>
 
-      <!-- SEGUNDO PLANO: Texto controlado solo por scroll + Herramientas -->
-      <div class="tizzy-va-side">
-        <div class="tizzy-va-bio-box">
-          <div class="tizzy-va-bio-top">
-            <div class="tizzy-va-steps" aria-hidden="true">
-              <span class="tizzy-va-step is-active" data-step="0">01 · Perfil</span>
-              <span class="tizzy-va-step" data-step="1">02 · Marcas & Carteles</span>
-              <span class="tizzy-va-step" data-step="2">03 · Enfoque</span>
+      <div class="tizzy-va-scroll-track" aria-hidden="true">
+        <span class="tizzy-va-scroll-fill"></span>
+      </div>
+
+      <div class="tizzy-va-stage">
+        <div class="tizzy-va-hero-card">
+          <img src="resources/tu-foto.jpg" alt="Tizzy · Diseñador gráfico">
+          <div class="tizzy-va-blue-tint" aria-hidden="true"></div>
+          <div class="tizzy-va-overlay-meta">
+            <span class="tizzy-va-tag">TIZZY · VISUAL DESIGN</span>
+            <span class="tizzy-va-subtag">MARCAS · CARTELES · 3D · MOTION</span>
+          </div>
+        </div>
+
+        <div class="tizzy-va-side">
+          <div class="tizzy-va-bio-box">
+            <div class="tizzy-va-bio-top">
+              <div class="tizzy-va-steps" aria-hidden="true">
+                <span class="tizzy-va-step is-active" data-step="0">01 · Perfil</span>
+                <span class="tizzy-va-step" data-step="1">02 · Marcas & Carteles</span>
+                <span class="tizzy-va-step" data-step="2">03 · Enfoque</span>
+              </div>
+              <span class="tizzy-va-scroll-cue">
+                <i class="fa-solid fa-angles-down" aria-hidden="true"></i>
+                Scroll
+              </span>
             </div>
-            <span class="tizzy-va-scroll-cue">
-              <i class="fa-solid fa-angles-down" aria-hidden="true"></i>
-              Haz scroll para cambiar
-            </span>
+
+            <div class="tizzy-va-panels">
+              <p class="tizzy-va-panel is-active" data-panel="0">
+                Soy Tizzy, un diseñador gráfico con un enfoque narrativo visual, donde la simplicidad se encuentra con la fuerza gráfica. Mi estilo se define por colores audaces, formas limpias y una sensación retro texturizada que aporta calidez y carácter. Mi objetivo es que cada pieza no solo sea visualmente atractiva, sino que también evoque emociones y deje una impresión duradera.
+              </p>
+              <p class="tizzy-va-panel" data-panel="1">
+                Me apasiona especialmente el diseño de marcas y carteles, ya que me permiten construir identidades sólidas y crear una presencia visual fuerte. Disfruto diseñando marcas con personalidad y carteles que comunican de manera directa y creativa, con un estilo distintivo que resuena con la audiencia.
+              </p>
+              <p class="tizzy-va-panel" data-panel="2">
+                En cada proyecto, busco transmitir confianza y cercanía mientras trabajo con creatividad y profesionalismo. Mi objetivo es aportar frescura e innovación, creando una identidad visual que represente verdaderamente a cada persona o proyecto y destaque en la memoria de su audiencia.
+              </p>
+            </div>
           </div>
 
-          <div class="tizzy-va-scroll-track" aria-hidden="true">
-            <span class="tizzy-va-scroll-fill"></span>
-          </div>
+          <div class="tizzy-va-tools">
+            <div class="tizzy-va-tools-top">
+              <span class="tizzy-va-tools-title">Mis Herramientas</span>
+              <span id="tizzy-va-tool-desc" class="tizzy-va-tool-desc">Selecciona una herramienta para ver su uso.</span>
+            </div>
 
-          <div class="tizzy-va-panels">
-            <p class="tizzy-va-panel is-active" data-panel="0">
-              Soy Tizzy, un diseñador gráfico con un enfoque narrativo visual, donde la simplicidad se encuentra con la fuerza gráfica. Mi estilo se define por colores audaces, formas limpias y una sensación retro texturizada que aporta calidez y carácter. Mi objetivo es que cada pieza no solo sea visualmente atractiva, sino que también evoque emociones y deje una impresión duradera.
-            </p>
-            <p class="tizzy-va-panel" data-panel="1">
-              Me apasiona especialmente el diseño de marcas y carteles, ya que me permiten construir identidades sólidas y crear una presencia visual fuerte. Disfruto diseñando marcas con personalidad y carteles que comunican de manera directa y creativa, con un estilo distintivo que resuena con la audiencia.
-            </p>
-            <p class="tizzy-va-panel" data-panel="2">
-              En cada proyecto, busco transmitir confianza y cercanía mientras trabajo con creatividad y profesionalismo. Mi objetivo es aportar frescura e innovación, creando una identidad visual que represente verdaderamente a cada persona o proyecto y destaque en la memoria de su audiencia.
-            </p>
-          </div>
-        </div>
-
-        <!-- Mis Herramientas -->
-        <div class="tizzy-va-tools">
-          <div class="tizzy-va-tools-top">
-            <span class="tizzy-va-tools-title">Mis Herramientas</span>
-            <span id="tizzy-va-tool-desc" class="tizzy-va-tool-desc">Selecciona una herramienta para ver su uso.</span>
-          </div>
-
-          <div class="tizzy-va-pills">
-            <button type="button" class="tizzy-va-pill">Adobe Photoshop</button>
-            <button type="button" class="tizzy-va-pill">Adobe Illustrator</button>
-            <button type="button" class="tizzy-va-pill">Adobe InDesign</button>
-            <button type="button" class="tizzy-va-pill">Adobe Premiere Pro</button>
-            <button type="button" class="tizzy-va-pill">Adobe After Effects</button>
-            <button type="button" class="tizzy-va-pill">Adobe Acrobat</button>
-            <button type="button" class="tizzy-va-pill">Cinema 4D</button>
-            <button type="button" class="tizzy-va-pill">Figma</button>
-            <button type="button" class="tizzy-va-pill">VisualStudioCode</button>
+            <div class="tizzy-va-pills">
+              <button type="button" class="tizzy-va-pill">Adobe Photoshop</button>
+              <button type="button" class="tizzy-va-pill">Adobe Illustrator</button>
+              <button type="button" class="tizzy-va-pill">Adobe InDesign</button>
+              <button type="button" class="tizzy-va-pill">Adobe Premiere Pro</button>
+              <button type="button" class="tizzy-va-pill">Adobe After Effects</button>
+              <button type="button" class="tizzy-va-pill">Adobe Acrobat</button>
+              <button type="button" class="tizzy-va-pill">Cinema 4D</button>
+              <button type="button" class="tizzy-va-pill">Figma</button>
+              <button type="button" class="tizzy-va-pill">VisualStudioCode</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 
 
