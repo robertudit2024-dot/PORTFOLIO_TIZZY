@@ -742,10 +742,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const scrollFill = vaSection.querySelector(".tizzy-va-scroll-fill");
   const scrollCueIcon = vaSection.querySelector(".tizzy-va-scroll-cue i");
   const starShape = vaSection.querySelector(".tizzy-va-star");
-  const heroCard = vaSection.querySelector(".tizzy-va-hero-card");
-  const toolsBlock = vaSection.querySelector(".tizzy-va-tools");
   const pills = gsap.utils.toArray(".tizzy-va-pill");
   const toolDesc = document.getElementById("tizzy-va-tool-desc");
+  const copyBtns = vaSection.querySelectorAll(".tizzy-va-copy");
+  const toastEl = document.getElementById("tizzy-va-toast");
 
   let currentChapter = -1;
 
@@ -757,44 +757,56 @@ document.addEventListener("DOMContentLoaded", () => {
     panels.forEach((panel, i) => {
       const match = i === idx;
       panel.classList.toggle("is-active", match);
-      gsap.to(panel, {
-        autoAlpha: match ? 1 : 0,
-        y: match ? 0 : 8,
-        duration: 0.25,
-        ease: "power2.out",
-        overwrite: true
-      });
+      if (match) {
+        gsap.fromTo(
+          panel,
+          { opacity: 0.25, y: 6 },
+          { opacity: 1, y: 0, duration: 0.25, ease: "power2.out", overwrite: true }
+        );
+      }
     });
   }
 
   activateChapter(0);
 
-  ScrollTrigger.create({
-    trigger: vaSection,
-    start: "top top",
-    end: "+=180%",
-    pin: vaPin,
-    scrub: 0.8,
-    onUpdate: (self) => {
-      const p = self.progress;
+  const mm = gsap.matchMedia();
 
-      if (scrollFill) gsap.set(scrollFill, { scaleX: p });
-      if (scrollCueIcon) gsap.set(scrollCueIcon, { y: Math.sin(p * Math.PI * 6) * 3 });
-      if (starShape) gsap.set(starShape, { rotation: p * 180 });
-      if (heroCard) gsap.set(heroCard, { scale: 0.95 + p * 0.05, y: (0.5 - p) * 14 });
+  mm.add("(min-width: 901px)", () => {
+    ScrollTrigger.create({
+      trigger: vaSection,
+      start: "top top",
+      end: "+=150%",
+      pin: vaPin,
+      scrub: 0.8,
+      onUpdate: (self) => {
+        const p = self.progress;
+        if (scrollFill) gsap.set(scrollFill, { scaleX: p });
+        if (scrollCueIcon) gsap.set(scrollCueIcon, { y: Math.sin(p * Math.PI * 6) * 3 });
+        if (starShape) gsap.set(starShape, { rotation: p * 180 });
 
-      if (toolsBlock) {
-        const toolProgress = gsap.utils.clamp(0, 1, (p - 0.55) / 0.35);
-        gsap.set(toolsBlock, {
-          opacity: 0.35 + toolProgress * 0.65,
-          y: (1 - toolProgress) * 10
-        });
+        if (p < 0.34) activateChapter(0);
+        else if (p < 0.67) activateChapter(1);
+        else activateChapter(2);
       }
+    });
+  });
 
-      if (p < 0.33) activateChapter(0);
-      else if (p < 0.66) activateChapter(1);
-      else activateChapter(2);
-    }
+  mm.add("(max-width: 900px)", () => {
+    ScrollTrigger.create({
+      trigger: vaSection,
+      start: "top 65%",
+      end: "bottom 35%",
+      scrub: 0.6,
+      onUpdate: (self) => {
+        const p = self.progress;
+        if (scrollFill) gsap.set(scrollFill, { scaleX: p });
+        if (starShape) gsap.set(starShape, { rotation: p * 140 });
+
+        if (p < 0.34) activateChapter(0);
+        else if (p < 0.67) activateChapter(1);
+        else activateChapter(2);
+      }
+    });
   });
 
   const toolNotes = {
@@ -814,8 +826,21 @@ document.addEventListener("DOMContentLoaded", () => {
     pill.addEventListener("click", () => {
       pills.forEach((p) => p.classList.remove("is-active"));
       pill.classList.add("is-active");
-      gsap.fromTo(pill, { scale: 0.92, y: -5 }, { scale: 1, y: 0, duration: 0.35, ease: "back.out(1.7)" });
+      gsap.fromTo(pill, { scale: 0.92, y: -4 }, { scale: 1, y: 0, duration: 0.3, ease: "back.out(1.7)" });
       if (toolDesc) toolDesc.textContent = `${label} — ${toolNotes[label] || label}`;
+    });
+  });
+
+  copyBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const value = btn.getAttribute("data-copy") || "";
+      if (!value) return;
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(value).catch(() => {});
+      }
+      if (toastEl) {
+        toastEl.textContent = `Copiado: ${value}`;
+      }
     });
   });
 
